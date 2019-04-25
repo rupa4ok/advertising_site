@@ -73,9 +73,9 @@
         </nav>
     
         <div class="container">
-            @section('breadcrumbs', Breadcrumbs::render())
-            @yield('breadcrumbs')
-            @include('layouts.partials.flash')
+{{--            @section('breadcrumbs', Breadcrumbs::render())--}}
+{{--            @yield('breadcrumbs')--}}
+{{--            @include('layouts.partials.flash')--}}
         </div>
 
         <main class="py-4">

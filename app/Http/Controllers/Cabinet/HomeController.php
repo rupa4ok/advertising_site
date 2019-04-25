@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Cabinet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class HomeController extends Controller
 {
     public function __construct()
     {
@@ -14,6 +14,6 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.home');
+        return view('cabinet.home');
     }
 }
