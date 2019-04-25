@@ -20,10 +20,10 @@ class LoginController extends Controller
     
     public function authenticated(Request $request, $user)
     {
-        if(!$user->status !== User::STATUS_ACTIVE) {
-            $this->guard()->logout();
-            return back()->with('error', 'Confirm your account');
-        }
-        return redirect()->intended($this->redirectPath());
+//        if(!$user->status !== User::STATUS_ACTIVE) {
+//            $this->guard()->logout();
+//            return back()->with('error', 'Confirm your account');
+//        }
+//        return redirect()->intended($this->redirectPath());
     }
 }

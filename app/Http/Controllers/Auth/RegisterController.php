@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Mail\VerifyMail;
 use App\User;
 use App\Http\Controllers\Controller;
+use Composer\DependencyResolver\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -21,16 +24,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
     
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-    
-    protected function create(array $data)
+    protected function create(RegisterRequest $data)
     {
         $user = User::create([
             'name' => $data['name'],
@@ -40,6 +34,8 @@ class RegisterController extends Controller
             'status' => User::STATUS_WAIT
         ]);
         
-        Mail::to($user->email)->send(new VerifyMail($user));
+//        Mail::to($user->email)->send(new VerifyMail($user));
+    
+        return $user;
     }
 }
