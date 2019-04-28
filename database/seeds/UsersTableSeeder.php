@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             'name' => str_random(10),
             'email' => 'test@mail.ru',
             'password' => bcrypt('sdfsdfsdfd'),
+            'status' => 'active'
         ]);
     }
 }

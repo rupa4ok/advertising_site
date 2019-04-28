@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Mail\VerifyMail;
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Composer\DependencyResolver\Request;
 use Illuminate\Support\Facades\Hash;
