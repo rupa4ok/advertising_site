@@ -10,7 +10,9 @@ class UsersController extends Controller
 {
     public function index()
     {
-        //
+        $users = User::orderBy('id', 'desc')->paginate(20);
+        
+        return view('admin.users.home', compact('users'));
     }
     
     public function create()
@@ -33,10 +35,8 @@ class UsersController extends Controller
         return redirect()->route('admin.users.show', ['id' => $user->id]);
     }
     
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
-        
         return view('admin.users.show', compact($user));
     }
     
