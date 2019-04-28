@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Mail\VerifyMail;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Services\RegisterService;
 use Composer\DependencyResolver\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -18,10 +19,12 @@ class RegisterController extends Controller
     use RegistersUsers;
     
     protected $redirectTo = '/';
+    private $service;
     
-    public function __construct()
+    public function __construct(RegisterService $service)
     {
         $this->middleware('guest');
+        $this->service = $service;
     }
     
     protected function create(RegisterRequest $data)
