@@ -10,6 +10,11 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+    
+    }
+    
     public function index()
     {
         $users = User::orderBy('id', 'desc')->paginate(20);
