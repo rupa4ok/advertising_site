@@ -35,6 +35,10 @@
                     <span class="badge badge-primary">Active</span>
                 @endif</td>
         </tr>
+        <tr>
+            <th>ROLE</th>
+            <td>{{ $user->role }}</td>
+        </tr>
         </tbody>
     </table>
 @endsection

@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use DomainException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use InvalidArgumentException;
 
 
 /**
@@ -13,6 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int $id
  * @property string $name
  * @property string $email
+ * * @property string $role
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -42,7 +45,7 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 'admin';
     
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 'role'
     ];
     
     protected $hidden = [
@@ -54,4 +57,15 @@ class User extends Authenticatable
     ];
     
     protected $primaryKey = 'id';
+    
+    public function changeRole($role): void
+    {
+        if (!in_array($role, [self::ROLE_USER, self::ROLE_ADMIN], true)) {
+            throw new InvalidArgumentException('Undefined role "'.$role.'"');
+        }
+        if ($this->role === $role) {
+            throw new DomainException('Role is already assigned');
+        }
+        $this->update(['role' => $role]);
+    }
 }

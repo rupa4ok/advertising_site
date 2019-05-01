@@ -14,6 +14,7 @@
             <th>NAME</th>
             <th>EMAIL</th>
             <th>STATUS</th>
+            <th>ROLE</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
                         <span class="badge badge-primary">Active</span>
                     @endif
                 </td>
+                <td>{{ $user->role }}</td>
             </tr>
         @endforeach
         </tbody>
