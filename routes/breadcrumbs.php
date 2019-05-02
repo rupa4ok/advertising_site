@@ -28,6 +28,8 @@ Breadcrumbs::register('admin.home', function (Crumbs $crumbs) {
     $crumbs->push('admin', route('admin.home'));
 });
 
+////// Users
+
 Breadcrumbs::register('admin.users.index', function (Crumbs $crumbs) {
     $crumbs->parent('admin.home');
     $crumbs->push('Users', route('admin.users.index'));
@@ -45,6 +47,8 @@ Breadcrumbs::register('admin.users.edit', function (Crumbs $crumbs, User $user) 
     $crumbs->push('Edit', route('admin.users.edit', $user));
 });
 
+///// Regions
+
 Breadcrumbs::register('admin.regions.index', function (Crumbs $crumbs) {
     $crumbs->parent('admin.home');
     $crumbs->push('regions', route('admin.regions.index'));
@@ -54,7 +58,11 @@ Breadcrumbs::register('admin.regions.create', function (Crumbs $crumbs) {
     $crumbs->push('Create', route('admin.regions.create'));
 });
 Breadcrumbs::register('admin.regions.show', function (Crumbs $crumbs, Region $region) {
-    $crumbs->parent('admin.regions.index');
+    if ($parent = $region->parent) {
+        $crumbs->parent('admin.regions.show', $parent);
+    } else {
+        $crumbs->parent('admin.regions.index');
+    }
     $crumbs->push($region->name, route('admin.regions.show', $region));
 });
 Breadcrumbs::register('admin.regions.edit', function (Crumbs $crumbs, Region $region) {

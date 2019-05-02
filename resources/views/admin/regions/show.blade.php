@@ -4,8 +4,9 @@
     @include('admin.regions._nav')
     
     <div class="d-flex flex-row mb-3 mt-3">
+        <a href="{{ route('admin.regions.create', ['parent' => $region->id]) }}" class="btn btn-success mr-1">Add subregion</a>
         <a href="{{ route('admin.regions.edit', $region) }}" class="btn btn-primary mr-1">Edit</a>
-            <form method="POST" action="{{ route('admin.regions.update', $regions) }}" class="mr-1">
+            <form method="POST" action="{{ route('admin.regions.update', $region) }}" class="mr-1">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger">Delete</button>
@@ -28,4 +29,6 @@
         </tr>
         </tbody>
     </table>
+
+    @include('admin.regions._list', ['regions' => $regions])
 @endsection
