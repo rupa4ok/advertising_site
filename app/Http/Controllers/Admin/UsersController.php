@@ -10,6 +10,11 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+    
+    }
+    
     public function index(Request $request)
     {
         $query = User::orderByDesc('id');

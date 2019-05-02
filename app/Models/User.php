@@ -35,6 +35,8 @@ use InvalidArgumentException;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereStatus($value)
  */
 class User extends Authenticatable
 {
