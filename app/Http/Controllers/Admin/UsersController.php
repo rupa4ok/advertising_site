@@ -29,13 +29,13 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'name' => 'required|string|max:255',
-           'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
         ]);
         
         $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
+            'name' => $request[ 'name' ],
+            'email' => $request[ 'email' ],
             'status' => User::STATUS_ACTIVE,
             'password' => Hash::make('password')
         ]);

@@ -61,13 +61,13 @@ class User extends Authenticatable
     
     public function changeRole($role): void
     {
-        if (!in_array($role, [self::ROLE_USER, self::ROLE_ADMIN], true)) {
+        if (!in_array($role, [ self::ROLE_USER, self::ROLE_ADMIN ], true)) {
             throw new InvalidArgumentException('Undefined role "'.$role.'"');
         }
         if ($this->role === $role) {
             throw new DomainException('Role is already assigned');
         }
-        $this->update(['role' => $role]);
+        $this->update([ 'role' => $role ]);
     }
     
     public function isWait(): bool {
