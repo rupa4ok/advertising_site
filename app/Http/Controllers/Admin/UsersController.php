@@ -10,15 +10,43 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
-    public function __construct()
+    public function index(Request $request)
     {
+        $query = User::orderByDesc('id');
+        
+        if (!empty($value = $request->get('id'))) {
+            $query->where('id', $value);
+        }
     
-    }
+        if (!empty($value = $request->get('name'))) {
+            $query->where('name', 'like', '%' . $value . '%');
+        }
     
-    public function index()
-    {
-        $users = User::orderBy('id', 'desc')->paginate(20);
-        return view('admin.users.index', compact('users'));
+        if (!empty($value = $request->get('email'))) {
+            $query->where('email', 'like', '%' . $value . '%');
+        }
+    
+        if (!empty($value = $request->get('status'))) {
+            $query->where('status', $value);
+        }
+    
+        if (!empty($value = $request->get('role'))) {
+            $query->where('role', $value);
+        }
+        
+        $users = $query->paginate(10);
+    
+        $statuses = [
+            User::STATUS_ACTIVE => 'Active',
+            User::STATUS_WAIT => 'Waiting'
+        ];
+    
+        $roles = [
+            User::ROLE_ADMIN => 'Admin',
+            User::ROLE_USER => 'User'
+        ];
+        
+        return view('admin.users.index', compact('users', 'statuses', 'roles'));
     }
     
     public function create()
