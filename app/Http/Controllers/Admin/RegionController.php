@@ -26,7 +26,7 @@ class RegionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255|unique:regions,slug,NULL,id,parent_id' . ($request['parent'] ?: 'NULL'),
+            'name' => 'required|string|max:255|unique:regions,name,NULL,id,parent_id' . ($request['parent'] ?: 'NULL'),
             'slug' => 'required|string|max:255|unique:regions,slug,NULL,id,parent_id' . ($request['parent'] ?: 'NULL'),
             'parent' => 'optional|exist:regions,id'
         ]);
@@ -44,7 +44,7 @@ class RegionController extends Controller
     {
         $regions = Region::where('parent_id', $region->id)->orderBy('name')->get();
         
-        return view('admin.users.show', compact('region', 'regions'));
+        return view('admin.regions.show', compact('region', 'regions'));
     }
     
     public function edit(Region $region)
@@ -54,11 +54,11 @@ class RegionController extends Controller
     
     public function update(Request $request, Region $region)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255|unique:regions,name' . $region->id . ',id,parent_id' . $region->parent_id,
-            'slug' => 'required|string|max:255|unique:regions,name' . $region->id . ',id,parent_id' . $region->parent_id,
-        ]);
-        
+//        $this->validate($request, [
+//            'name' => 'required|string|max:255|unique:regions,name,' . $region->id . ',id,parent_id' . $region->parent_id,
+//            'slug' => 'required|string|max:255|unique:regions,slug,' . $region->id . ',id,parent_id' . $region->parent_id
+//        ]);
+//
         $region->update([
             'name' => $request['name'],
             'slug' => $request['slug']
