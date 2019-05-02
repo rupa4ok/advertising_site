@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('admin.users._nav')
+    @include('admin.regions._nav')
     
     <div class="d-flex flex-row mb-3 mt-3">
-        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary mr-1">Edit</a>
-            <form method="POST" action="{{ route('admin.users.update', $user) }}" class="mr-1">
+        <a href="{{ route('admin.regions.edit', $regions) }}" class="btn btn-primary mr-1">Edit</a>
+            <form method="POST" action="{{ route('admin.regions.update', $regions) }}" class="mr-1">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger">Delete</button>
@@ -16,34 +16,15 @@
         <tbody>
         <tr>
             <th>ID</th>
-            <td>{{ $user->id }}</td>
+            <td>{{ $regions->id }}</td>
         </tr>
         <tr>
             <th>NAME</th>
-            <td>{{ $user->name }}</td>
+            <td>{{ $regions->name }}</td>
         </tr>
         <tr>
-            <th>EMAIL</th>
-            <td>{{ $user->email }}</td>
-        </tr>
-        <tr>
-            <th>STATUS</th>
-            <td>@if ($user->isWait())
-                    <span class="badge badge-secondary">Waiting</span>
-                @endif
-                @if ($user->isActive())
-                    <span class="badge badge-primary">Active</span>
-                @endif</td>
-        </tr>
-        <tr>
-            <th>ROLE</th>
-            <td>
-                @if ($user->isAdmin())
-                    <span class="badge badge-danger">Admin</span>
-                @else
-                    <span class="badge badge-secondary">User</span>
-                @endif
-            </td>
+            <th>SLUG</th>
+            <td>{{ $regions->email }}</td>
         </tr>
         </tbody>
     </table>
