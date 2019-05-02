@@ -51,11 +51,16 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $statuses = [
-            User::STATUS_WAIT => 'Waiting',
-            User::STATUS_ACTIVE => 'Active'
+            User::STATUS_ACTIVE => 'Active',
+            User::STATUS_WAIT => 'Waiting'
+        ];
+    
+        $roles = [
+            User::ROLE_ADMIN => 'Admin',
+            User::ROLE_USER => 'User'
         ];
         
-        return view('admin.users.edit', compact('user', 'statuses'));
+        return view('admin.users.edit', compact('user', 'statuses', 'roles'));
     }
     
     public function update(Request $request, User $user)
@@ -63,7 +68,8 @@ class UsersController extends Controller
         $data = $this->validate($request, [
             'name' => 'required', 'string', 'max:255',
             'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'status' => 'required', 'string', Rule::in(User::STATUS_WAIT, User::STATUS_ACTIVE)
+            'status' => 'required', 'string', Rule::in(User::STATUS_WAIT, User::STATUS_ACTIVE),
+            'role' => 'required', 'string', Rule::in(User::ROLE_USER, User::ROLE_ADMIN)
         ]);
         //TODO сделать редактирование статуса для юзера
         $user->update($data);

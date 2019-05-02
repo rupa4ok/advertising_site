@@ -41,16 +41,16 @@
         </div>
     
         <div class="form-group">
-            <label for="status" class="col-form-label">Status</label>
+            <label for="status" class="col-form-label">ROLE</label>
             <select name="role" id="role" class="form-control {{ $errors->has('role') ? ' is-invalid' : '' }}">
-                @foreach($statuses as $value => $label)
-                    <option value="{{ $value }}" {{ $value === old('status', $user->status) ? 'selected' : '' }}>
+                @foreach($roles as $value => $label)
+                    <option value="{{ $value }}" {{ $value === old('role', $user->role) ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                 @endforeach
             </select>
-            @if ($errors->has('status'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('status') }}</strong></span>
+            @if ($errors->has('role'))
+                <span class="invalid-feedback"><strong>{{ $errors->first('role') }}</strong></span>
             @endif
         </div>
         

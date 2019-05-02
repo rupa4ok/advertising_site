@@ -15,7 +15,8 @@ use InvalidArgumentException;
  * @property int $id
  * @property string $name
  * @property string $email
- * * @property string $role
+ * @property string $status
+ * @property string $role
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -67,5 +68,21 @@ class User extends Authenticatable
             throw new DomainException('Role is already assigned');
         }
         $this->update(['role' => $role]);
+    }
+    
+    public function isWait(): bool {
+        return $this->status === self::STATUS_WAIT;
+    }
+    
+    public function isActive(): bool {
+        return $this->status === self::STATUS_ACTIVE;
+    }
+    
+    public function isAdmin(): bool {
+        return $this->role === self::ROLE_ADMIN;
+    }
+    
+    public function isUser(): bool {
+        return $this->role === self::ROLE_USER;
     }
 }
