@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Region;
-use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RegionController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $regions = Region::where('parent_id', null)->orderBy('name')->paginate(20);
         

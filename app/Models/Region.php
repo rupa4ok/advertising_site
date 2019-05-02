@@ -13,6 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property int|null $parent_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereUpdatedAt($value)
  */
 class Region extends Model
 {
