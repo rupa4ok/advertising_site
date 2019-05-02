@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Mail\VerifyMail;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Services\RegisterService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Str;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -29,11 +30,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'verify_token' => Str::random(),
+            'verify_token' => str_random(10),
             'status' => User::STATUS_WAIT
         ]);
         
-//        Mail::to($user->email)->send(new VerifyMail($user));
+        Mail::to($user->email)->send(new VerifyMail($user));
     
         return $user;
     }
