@@ -8,4 +8,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.regions.index') }}">Regions</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.adverts.categories.index') }}">Category</a>
+    </li>
 </ul>

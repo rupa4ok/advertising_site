@@ -1,14 +1,52 @@
-
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+@import "~font-awesome/scss/font-awesome.scss";
+@import "~summernote/dist/summernote-bs4.css";
+
+.navbar {
+  background-color: #0c64a2;
+  padding: 0.35rem 1rem;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}
+
+.table th, .table td {
+  padding: 0.55rem 0.75rem;
+}
+
+.adverts-list {
+  .advert {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+.search-bar {
+  background: #e9ecef;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+}
+
+.banner {
+  border: 1px solid #ddd;
 }
