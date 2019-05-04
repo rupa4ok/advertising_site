@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Adverts;
 
-use App\Models\Advert\Category;
+use App\Models\Adverts\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

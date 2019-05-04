@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Advert\Category;
+use App\Models\Adverts\Category;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
