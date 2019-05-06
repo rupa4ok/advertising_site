@@ -32,7 +32,7 @@ class Attribute extends Model
     {
         return [
             self::TYPE_STRING => 'String',
-            self::TYPE_INTEGER => 'Itteger',
+            self::TYPE_INTEGER => 'Integer',
             self::TYPE_FLOAT => 'Float',
         ];
     }

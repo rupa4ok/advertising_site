@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Adverts;
 
+use App\Http\Requests\Admin\Adverts\CategoryRequest;
 use App\Models\Adverts\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,12 +24,10 @@ class CategoryController extends Controller
         return view('admin.adverts.categories.create', compact('parents'));
     }
     
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'parent' => 'nullable|integer|exists:advert_categories,id',
+            ,
         ]);
         $category = Category::create([
             'name' => $request['name'],
