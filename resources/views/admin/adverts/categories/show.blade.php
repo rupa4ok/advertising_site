@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.adverts.categories._nav')
     
-    <div class="d-flex flex-row mb-3">
+    <div class="d-flex flex-row mb-3 mt-3">
         <a href="{{ route('admin.adverts.categories.edit', $category) }}" class="btn btn-primary mr-1">Edit</a>
         <form method="POST" action="{{ route('admin.adverts.categories.destroy', $category) }}" class="mr-1">
             @csrf

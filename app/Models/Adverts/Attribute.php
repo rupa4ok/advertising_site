@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Attribute extends Model
 {
-    protected $fillable = ['name', 'type', 'requires', 'default', 'variants', 'sort'];
+    protected $fillable = ['name', 'type', 'required', 'default', 'variants', 'sort'];
     
     public const TYPE_STRING = 'string';
     public const TYPE_INTEGER = 'integer';

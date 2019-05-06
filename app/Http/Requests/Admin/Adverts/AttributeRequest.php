@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Admin\Adverts;
 
+use App\Models\Adverts\Attribute;
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AttributeRequest extends FormRequest
 {
@@ -13,7 +16,7 @@ class AttributeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +27,11 @@ class AttributeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(Attribute::typesList()))],
+            'required' => 'nullable|string|max:255',
+            'variants' => 'nullable|string',
+            'sort' => 'required|integer',
         ];
     }
 }

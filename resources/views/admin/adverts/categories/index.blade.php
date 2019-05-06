@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.adverts.categories._nav')
     
-    <p><a href="{{ route('admin.adverts.categories.create') }}" class="btn btn-success">Add Category</a></p>
+    <p><a href="{{ route('admin.adverts.categories.create') }}" class="btn btn-success mt-3">Add Category</a></p>
     
     <table class="table table-bordered table-striped">
         <thead>
