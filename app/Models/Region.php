@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Region
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Region extends Model
 {
+    
     protected $fillable = ['name', 'slug', 'parent_id'];
     
     public function parent()

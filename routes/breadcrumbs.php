@@ -4,6 +4,7 @@ use App\Models\Adverts\Attribute;
 use App\Models\Adverts\Category;
 use App\Models\Region;
 
+use App\Models\User;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 
 Breadcrumbs::register('home', function (Crumbs $crumbs) {

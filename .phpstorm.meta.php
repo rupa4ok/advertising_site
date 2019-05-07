@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-05-04 05:47:12.
+    * Generated on 2019-05-07 11:17:26.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -112,6 +112,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,
@@ -262,6 +263,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,
@@ -412,6 +414,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,
@@ -562,6 +565,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,
@@ -712,6 +716,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,
@@ -862,6 +867,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,
@@ -1012,6 +1018,7 @@ namespace PHPSTORM_META {
         'command.rule.make' => \Illuminate\Foundation\Console\RuleMakeCommand::class,
         'command.seed' => \Illuminate\Database\Console\Seeds\SeedCommand::class,
         'command.seeder.make' => \Illuminate\Database\Console\Seeds\SeederMakeCommand::class,
+        'command.selfdiagnosis' => \BeyondCode\SelfDiagnosis\SelfDiagnosisCommand::class,
         'command.serve' => \Illuminate\Foundation\Console\ServeCommand::class,
         'command.session.table' => \Illuminate\Session\Console\SessionTableCommand::class,
         'command.storage.link' => \Illuminate\Foundation\Console\StorageLinkCommand::class,

@@ -11,6 +11,12 @@ trait CreatesApplication
      *
      * @return \Illuminate\Foundation\Application
      */
+    
+    public function setUp(): void
+    {
+    
+    }
+    
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';

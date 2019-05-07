@@ -11,7 +11,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::defaultOrder()->withDepth()->get();
+        $categories = Category::defaultOrder()->withDepth()->paginate(30);
         
         return view('admin.adverts.categories.index', compact('categories'));
     }

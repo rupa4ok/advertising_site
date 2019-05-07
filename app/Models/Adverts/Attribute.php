@@ -11,6 +11,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property int $category_id
+ * @property string $name
+ * @property string $type
+ * @property int $required
+ * @property array $variants
+ * @property int $sort
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereRequired($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereSort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Attribute whereVariants($value)
  */
 class Attribute extends Model
 {
