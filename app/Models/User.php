@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use InvalidArgumentException;
 
-
 /**
  * App\Models\User
  *
@@ -60,6 +59,17 @@ class User extends Authenticatable
     ];
     
     protected $primaryKey = 'id';
+    
+    public static function new($name, $email): self
+    {
+        return static::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => str_random(10),
+            'role' => self::ROLE_USER,
+            'status' => self::STATUS_ACTIVE,
+        ]);
+    }
     
     public function changeRole($role): void
     {
