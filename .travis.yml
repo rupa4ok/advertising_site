@@ -14,9 +14,9 @@ before_script:
 
 env:
   global:
-  - DB_CONNECTION=pgsql
+  - DB_CONNECTION=mysql
   - DB_DATABASE=travis_ci_test
-  - DB_USERNAME=postgres
+  - DB_USERNAME=lara
   - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 before_install:
