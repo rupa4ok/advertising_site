@@ -31,7 +31,6 @@ before_install:
 
 install:
 - composer self-update
-- composer self-update
 - make install
 - make env
 - make key
