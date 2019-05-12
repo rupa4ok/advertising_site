@@ -31,6 +31,7 @@ before_install:
 
 install:
 - composer self-update
+- composer self-update
 - make install
 - make env
 - make key
@@ -39,5 +40,4 @@ after_script:
 - vendor/bin/test-reporter
 
 script:
-- make test
 - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -r 887cbed5268a8f6fca764aca176f81f4321cf455b39a7095cbe81f59a101dcc7 --exit-code $TRAVIS_TEST_RESULT; fi
