@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-05-11 05:09:17.
+    * Generated on 2019-05-12 20:19:52.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -35,6 +35,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
@@ -189,6 +190,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
@@ -343,6 +345,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
@@ -497,6 +500,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
@@ -651,6 +655,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
@@ -805,6 +810,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
@@ -959,6 +965,7 @@ namespace PHPSTORM_META {
         'Illuminate\Routing\Contracts\ControllerDispatcher' => \Illuminate\Routing\ControllerDispatcher::class,
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Laracasts\Flash\SessionStore' => \Laracasts\Flash\LaravelSessionStore::class,
+        'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Recca0120\LaravelTracy\DebuggerManager' => \Recca0120\LaravelTracy\DebuggerManager::class,
         'Recca0120\Terminal\Application' => \Recca0120\Terminal\Application::class,
