@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="bootstrap/app.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -9,12 +9,8 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -25,9 +21,10 @@
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
-        <env name="MAIL_DRIVER" value="array"/>
-        <env name="SMS_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="DB_DATABASE" value="rlp_rlfpsfactory"/> <!-- this is testing database -->
+        <env name="DB_USERNAME" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
     </php>
 </phpunit>

@@ -81,7 +81,7 @@
             </div>
         </nav>
     
-        <div class="container">
+        <div class="container mt-3">
             @section('breadcrumbs', Breadcrumbs::render())
             @yield('breadcrumbs')
             @include('layouts.partials.flash')

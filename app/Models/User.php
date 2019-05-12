@@ -6,6 +6,7 @@ use DomainException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 /**
@@ -47,15 +48,11 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 'admin';
     
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+        'name', 'email', 'password', 'verify_token', 'status', 'role',
     ];
     
     protected $hidden = [
         'password', 'remember_token',
-    ];
-    
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
     
     protected $primaryKey = 'id';
@@ -65,9 +62,32 @@ class User extends Authenticatable
         return static::create([
             'name' => $name,
             'email' => $email,
-            'password' => str_random(10),
+            'password' => Str::uuid(),
             'role' => self::ROLE_USER,
             'status' => self::STATUS_ACTIVE,
+        ]);
+    }
+    
+    public static function register(string $name, string $email, string $password): self
+    {
+        return static::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => bcrypt($password),
+            'verify_token' => Str::uuid(),
+            'role' => self::ROLE_USER,
+            'status' => self::STATUS_WAIT,
+        ]);
+    }
+    
+    public function verify(): void
+    {
+        if (!$this->isWait()) {
+            throw new \DomainException('User is already verified.');
+        }
+        $this->update([
+            'status' => self::STATUS_ACTIVE,
+            'verify_token' => null,
         ]);
     }
     

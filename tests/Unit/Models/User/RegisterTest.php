@@ -8,15 +8,16 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CreateTest extends TestCase
+class RegisterTest extends TestCase
 {
     use DatabaseTransactions;
     
     public function testNew(): void
     {
-        $user = User::new(
+        $user = User::register(
             $name = 'name',
-            $email = 'email'
+            $email = 'email',
+            $password = 'password'
         );
     
         self::assertNotEmpty($user);
@@ -24,9 +25,25 @@ class CreateTest extends TestCase
         self::assertEquals($name, $user->name);
         self::assertEquals($email, $user->email);
         self::assertNotEmpty($user->password);
+        self::assertNotEquals($password, $user->password);
     
         self::assertFalse($user->isAdmin());
+        self::assertFalse($user->isWait());
+        self::assertFalse($user->isActive());
         self::assertTrue($user->isUser());
     }
     
+    public function testVerify(): void
+    {
+        $user = User::register(
+            $name = 'name',
+            $email = 'email',
+            $password = 'password'
+        );
+        
+        $user->verify();
+
+        self::assertFalse($user->isWait());
+        self::assertFalse($user->isActive());
+    }
 }
