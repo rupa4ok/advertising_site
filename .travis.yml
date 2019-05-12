@@ -5,6 +5,13 @@ php:
 services:
 - mysql
 
+addons:
+  apt:
+    packages:
+      - mysql-server-5.6
+      - mysql-client-core-5.6
+      - mysql-client-5.6
+
 before_script:
 - composer run-script post-root-package-install
 - composer run-script post-create-project-cmd
@@ -19,7 +26,8 @@ env:
   - DB_USERNAME=lara
   - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
-
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS lara;'
 
 install:
 - composer self-update
