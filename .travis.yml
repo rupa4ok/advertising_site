@@ -20,7 +20,6 @@ env:
   - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 before_install:
-- sh -c "if [ '$DB_CONNECTION' = 'mysql' ]; then mysql -c 'DROP DATABASE IF EXISTS travis_ci_test;' -U mysql; fi"
 - sh -c "if [ '$DB_CONNECTION' = 'mysql' ]; then mysql -c 'CREATE DATABASE travis_ci_test;' -U mysql; fi"
 
 install:
