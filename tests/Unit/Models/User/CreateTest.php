@@ -28,5 +28,4 @@ class CreateTest extends TestCase
         self::assertFalse($user->isAdmin());
         self::assertTrue($user->isUser());
     }
-    
 }

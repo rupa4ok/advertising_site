@@ -22,7 +22,8 @@ use InvalidArgumentException;
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|
+ * \Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
@@ -76,7 +77,7 @@ class User extends Authenticatable
             'password' => bcrypt($password),
             'verify_token' => Str::uuid(),
             'role' => self::ROLE_USER,
-            'status' => self::STATUS_WAIT,
+            'status' => 'wait',
         ]);
     }
     
@@ -94,7 +95,7 @@ class User extends Authenticatable
     public function changeRole($role): void
     {
         if (!in_array($role, [ self::ROLE_USER, self::ROLE_ADMIN ], true)) {
-            throw new InvalidArgumentException('Undefined role "'.$role.'"');
+            throw new InvalidArgumentException('Undefined role "' . $role . '"');
         }
         if ($this->role === $role) {
             throw new DomainException('Role is already assigned');
@@ -102,19 +103,23 @@ class User extends Authenticatable
         $this->update([ 'role' => $role ]);
     }
     
-    public function isWait(): bool {
+    public function isWait(): bool
+    {
         return $this->status === self::STATUS_WAIT;
     }
     
-    public function isActive(): bool {
+    public function isActive(): bool
+    {
         return $this->status === self::STATUS_ACTIVE;
     }
     
-    public function isAdmin(): bool {
+    public function isAdmin(): bool
+    {
         return $this->role === self::ROLE_ADMIN;
     }
     
-    public function isUser(): bool {
+    public function isUser(): bool
+    {
         return $this->role === self::ROLE_USER;
     }
 }

@@ -10,3 +10,5 @@ key:
 		php artisan key:generate
 lint:
 		composer run-script phpcs -- --standard=PSR12  app routes tests
+fix:
+		composer run-script phpcbf -- --standard=PSR12  app routes tests
