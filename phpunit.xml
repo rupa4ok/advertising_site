@@ -23,7 +23,7 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="DB_DATABASE" value="rlp_rlfpsfactory"/> <!-- this is testing database -->
+        <env name="DB_DATABASE" value="lara"/> <!-- this is testing database -->
         <env name="DB_USERNAME" value="root"/>
         <env name="DB_PASSWORD" value=""/>
     </php>
