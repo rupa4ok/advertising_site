@@ -1,0 +1,17 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./storage/docker/mysql:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_USER=app"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_DATABASE=app"
+    ports:
+      - "33062:3306"
+  redis:
+    image: redis:3.0
+    ports:
+      - "63791:6379"
