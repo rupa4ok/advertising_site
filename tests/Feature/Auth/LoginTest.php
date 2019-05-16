@@ -22,8 +22,6 @@ class LoginTest extends TestCase
     
     public function testErrors(): void
     {
-        $this->withoutMiddleware();
-        
         $response = $this->post('/login', [
             'email' => '',
             'password' => '',
