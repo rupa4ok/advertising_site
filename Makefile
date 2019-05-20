@@ -20,5 +20,5 @@ lint:
 		composer run-script phpcs -- --standard=PSR12  app routes tests
 fix:
 		composer run-script phpcbf -- --standard=PSR12  app routes tests
-test:
+tests:
 		docker-compose exec php-cli vendor/bin/phpunit

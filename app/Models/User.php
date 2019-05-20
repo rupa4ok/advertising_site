@@ -15,6 +15,7 @@ use InvalidArgumentException;
  *
  * @property int $id
  * @property string $name
+* @property string $last_name
  * @property string $email
  * @property string $status
  * @property string $role
@@ -53,7 +54,7 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 'admin';
     
     protected $fillable = [
-        'name', 'email', 'password', 'verify_token', 'status', 'role',
+        'name', 'email', 'last_name', 'password', 'verify_token', 'status', 'role',
     ];
     
     protected $hidden = [
