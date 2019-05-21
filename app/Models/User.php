@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use DomainException;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Notifications\Notifiable;
@@ -15,9 +16,14 @@ use InvalidArgumentException;
  *
  * @property int $id
  * @property string $name
-* @property string $last_name
+ * @property string $last_name
+ * @property string $phone
+ * @property bool $phone_verified
  * @property string $email
  * @property string $status
+ * @property string $verify_token
+ * @property string $phone_verify_token
+ * @property Carbon $phone_verify_token_expire
  * @property string $role
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -40,9 +46,14 @@ use InvalidArgumentException;
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereStatus($value)
- * @property string|null $verify_token
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereVerifyToken($value)
+ * @property int $phone_verifyed
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyTokenExpire($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyed($value)
  */
 class User extends Authenticatable
 {
@@ -54,11 +65,16 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 'admin';
     
     protected $fillable = [
-        'name', 'email', 'last_name', 'password', 'verify_token', 'status', 'role',
+        'name', 'email', 'last_name', 'phone', 'password', 'verify_token', 'status', 'role',
     ];
     
     protected $hidden = [
         'password', 'remember_token',
+    ];
+    
+    protected $casts = [
+        'phone_verified' => 'boolean',
+        'phone_verify_token_expire' => 'datetime'
     ];
     
     protected $primaryKey = 'id';
@@ -106,6 +122,49 @@ class User extends Authenticatable
             throw new DomainException('Role is already assigned');
         }
         $this->update([ 'role' => $role ]);
+    }
+    
+    public function unverifyPhone(): void
+    {
+        $this->phone_verified = false;
+        $this->phone_verify_token = null;
+        $this->phone_verify_token_expire = null;
+        $this->saveOrFail();
+    }
+    
+    public function requestPhoneVerification(Carbon $now): string
+    {
+        if (empty($this->phone)) {
+            throw new \DomainException('Phone number is empty');
+        }
+        if (!empty($this->phone_verify_token) && $this->phone_verify_token_expire
+        && $this->phone_verify_token_expire->gt($now)) {
+            throw new \DomainException('Token is already request');
+        }
+        $this->phone_verified = false;
+        $this->phone_verify_token = (string)random_int(10000, 99999);
+        $this->phone_verify_token_expire = $now->copy()->addSecond(300);
+        $this->saveOrFail();
+        
+        return $this->phone_verify_token;
+    }
+    
+    public function verifyPhone($token, Carbon $now):void
+    {
+        if ($token !== $this->phone_verify_token) {
+            throw new \DomainException('Incorrect verify token');
+        }
+        if ($this->phone_verify_token_expire ->lt($now)) {
+            throw new \DomainException('Token is expired');
+        }
+        $this->phone_verified = true;
+        $this->phone_verify_token = null;
+        $this->phone_verify_token_expire = null;
+        $this->saveOrFail();
+    }
+    public function isPhoneVerified(): bool
+    {
+        return $this->phone_verified;
     }
     
     public function isWait(): bool
