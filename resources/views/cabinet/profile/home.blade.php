@@ -26,8 +26,11 @@
                         <i>(is not verified)</i><br />
                         <form method="POST" action="{{ route('cabinet.profile.phone') }}">
                             @csrf
-                            <button type="submit" class="btn btn-sm btn-success">Verify</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Verify</button>
                         </form>
+                    @endif
+                    @if ($user->isPhoneVerified())
+                    <span type="submit" class="btn btn-sm btn-success">Verified</span>
                     @endif
                 @endif
             </td>
