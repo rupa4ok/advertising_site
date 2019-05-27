@@ -13,7 +13,7 @@ class RegisterService
     public function register(RegisterRequest $request): void
     {
         $user = [
-        
+            //
         ];
     }
 }
