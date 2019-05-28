@@ -25,6 +25,7 @@ use InvalidArgumentException;
  * @property string $phone_verify_token
  * @property Carbon $phone_verify_token_expire
  * @property string $role
+ * @property boolean $phone_auth
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -74,7 +75,8 @@ class User extends Authenticatable
     
     protected $casts = [
         'phone_verified' => 'boolean',
-        'phone_verify_token_expire' => 'datetime'
+        'phone_verify_token_expire' => 'datetime',
+        'phone_auth' => 'boolean',
     ];
     
     protected $primaryKey = 'id';
@@ -129,6 +131,7 @@ class User extends Authenticatable
         $this->phone_verified = false;
         $this->phone_verify_token = null;
         $this->phone_verify_token_expire = null;
+        $this->phone_auth = false;
         $this->saveOrFail();
     }
     
@@ -162,6 +165,23 @@ class User extends Authenticatable
         $this->phone_verify_token_expire = null;
         $this->saveOrFail();
     }
+    
+    public function enablePhoneAuth(): void
+    {
+        if (!empty($this->phone) && !$this->isPhoneVerified()) {
+            throw new \DomainException('Phone number is empty.');
+        }
+        $this->phone_auth = true;
+        $this->saveOrFail();
+    }
+    
+    public function disablePhoneAuth(): void
+    {
+        $this->phone_auth = false;
+        $this->saveOrFail();
+    }
+    
+    
     public function isPhoneVerified(): bool
     {
         return $this->phone_verified;
@@ -185,5 +205,10 @@ class User extends Authenticatable
     public function isUser(): bool
     {
         return $this->role === self::ROLE_USER;
+    }
+    
+    public function isPhoneAuthEnabled(): bool
+    {
+        return (bool)$this->phone_auth;
     }
 }

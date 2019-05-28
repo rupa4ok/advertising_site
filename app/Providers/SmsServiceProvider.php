@@ -10,18 +10,18 @@ use Illuminate\Support\ServiceProvider;
 
 class SmsServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function register(): void
     {
         $this->app->singleton(SmsSender::class, function (Application $app) {
             $config = $app->make('config')->get('sms');
             
             switch ($config['driver']) {
                 case 'sms.ru':
-                    $params = $config['driver']['sms.ru'];
+                    $params = $config['drivers']['sms.ru'];
                     if (!empty($params['url'])) {
-                        return new SmsRu($params['api_id'], $params['url']);
+                        return new SmsRu($params['app_id'], $params['url']);
                     }
-                    return new SmsRu($params['api_id']);
+                    return new SmsRu($params['app_id']);
                 case 'array':
                     return new ArraySender();
                 default:

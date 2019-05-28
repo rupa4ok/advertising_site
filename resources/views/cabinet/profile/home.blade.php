@@ -35,11 +35,11 @@
                 @endif
             </td>
         </tr>
-        @if ($user->phone)
+        @if ($user->isPhoneVerified())
             <tr>
                 <th>Two Factor Auth</th>
                 <td>
-                    <form action="POST" action=""{{ route('cabinet.profile.phone.auth') }}>
+                    <form method="post" action="{{ route('cabinet.profile.phone.auth') }}">
                         @csrf
                         @if ($user->isPhoneAuthEnabled())
                             <button type="submit" class="bnt btn-sm btn-success">On</button>

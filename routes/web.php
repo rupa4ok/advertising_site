@@ -20,7 +20,7 @@ Route::group(
             Route::post('/phone', 'PhoneController@request');
             Route::get('/phone', 'PhoneController@form')->name('phone');
             Route::put('/phone', 'PhoneController@verify')->name('phone.verify');
-            Route::post('/phone/auth', 'PhoneController@auth')->name('phone.auth');
+            Route::post('/phone/auth/', 'PhoneController@auth')->name('phone.auth');
         });
         Route::get('favorites', 'FavoriteController@index')->name('favorites.index');
         Route::delete('favorites/{advert}', 'FavoriteController@remove')->name('favorites.remove');
