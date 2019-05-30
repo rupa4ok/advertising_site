@@ -23,7 +23,7 @@ class PhoneController extends Controller
         
         try {
             $token = $user->requestPhoneVerification(Carbon::now());
-            $this->sms->send($user->phone, 'Phone verification token:' . $token);
+//            $this->sms->send($user->phone, 'Phone verification token:' . $token);
         } catch (\DomainException $e) {
             $request->session()->flash('error', $e->getMessage());
         }
