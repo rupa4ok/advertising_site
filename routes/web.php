@@ -113,3 +113,5 @@ Route::group(
         });
     }
 );
+
+Route::get('/ajax/regions', 'Ajax\RegionController@get')->name('ajax.regions');

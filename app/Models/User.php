@@ -64,6 +64,7 @@ class User extends Authenticatable
     public const STATUS_ACTIVE = 'active';
     public const ROLE_USER = 'user';
     public const ROLE_ADMIN = 'admin';
+	public const ROLE_MODERATOR = 'moderator';
     
     protected $fillable = [
         'name', 'email', 'last_name', 'phone', 'password', 'verify_token', 'status', 'role',
@@ -103,6 +104,15 @@ class User extends Authenticatable
             'status' => 'wait',
         ]);
     }
+	
+	public  static function rolesList(): array
+	{
+		return [
+			self::ROLE_ADMIN => 'Admin',
+			self::ROLE_USER => 'User',
+			self::ROLE_MODERATOR => 'Moderator',
+		];
+	}
     
     public function verify(): void
     {
@@ -117,7 +127,7 @@ class User extends Authenticatable
     
     public function changeRole($role): void
     {
-        if (!in_array($role, [ self::ROLE_USER, self::ROLE_ADMIN ], true)) {
+        if (!array_key_exists($role, self::rolesList())) {
             throw new InvalidArgumentException('Undefined role "' . $role . '"');
         }
         if ($this->role === $role) {
@@ -216,4 +226,6 @@ class User extends Authenticatable
     {
         return empty($this->name) || empty($this->last_name) || !$this->isPhoneVerified();
     }
+    
+    
 }

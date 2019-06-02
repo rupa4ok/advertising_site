@@ -83,10 +83,7 @@ class UsersController extends Controller
             User::STATUS_WAIT => 'Waiting'
         ];
     
-        $roles = [
-            User::ROLE_ADMIN => 'Admin',
-            User::ROLE_USER => 'User'
-        ];
+        $roles = User::rolesList();
         
         return view('admin.users.edit', compact('user', 'statuses', 'roles'));
     }
