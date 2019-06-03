@@ -18,24 +18,4 @@ class AdvertController extends Controller
     {
         return view('cabinet.adverts.index');
     }
-    
-    public function create()
-    {
-	    return view('cabinet.adverts.create');
-    }
-    
-    public function edit($id)
-    {
-	    return view('cabinet.adverts.edit');
-    }
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    
-    public function destroy($id)
-    {
-        //
-    }
 }
