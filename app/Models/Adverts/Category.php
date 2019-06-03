@@ -35,6 +35,7 @@ class Category extends Model
     
     protected $table = 'advert_categories';
     public $timestamps = false;
+	public $forceDeleting = true;
     protected $fillable = ['name', 'slug', 'parent_id'];
     
     public function parentAttributes(): array

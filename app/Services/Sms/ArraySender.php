@@ -16,6 +16,6 @@ class ArraySender implements SmsSender
     
     public function getMessages(): array
     {
-        $this->message;
+        return $this->message;
     }
 }

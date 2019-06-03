@@ -10,10 +10,4 @@ class RegisterService
 {
     private $mailer;
     
-    public function register(RegisterRequest $request): void
-    {
-        $user = [
-            //
-        ];
-    }
 }

@@ -16,7 +16,7 @@ class VerifyMail extends Mailable
     
     public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
     
     public function build()
