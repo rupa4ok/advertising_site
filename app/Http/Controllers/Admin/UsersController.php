@@ -17,23 +17,18 @@ class UsersController extends Controller
         if (!empty($value = $request->get('id'))) {
             $query->where('id', $value);
         }
-    
         if (!empty($value = $request->get('name'))) {
             $query->where('name', 'like', '%' . $value . '%');
         }
-    
         if (!empty($value = $request->get('email'))) {
             $query->where('email', 'like', '%' . $value . '%');
         }
-    
         if (!empty($value = $request->get('status'))) {
             $query->where('status', $value);
         }
-    
         if (!empty($value = $request->get('role'))) {
             $query->where('role', $value);
         }
-        
         $users = $query->paginate(10);
     
         $statuses = [

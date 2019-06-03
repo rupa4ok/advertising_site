@@ -29,10 +29,7 @@ class LoginController extends Controller
 	}
 	public function login(LoginRequest $request)
 	{
-		if ($this->hasTooManyLoginAttempts($request)) {
-			$this->fireLockoutEvent($request);
-			$this->sendLockoutResponse($request);
-		}
+		$this->loginRequest($request);
 		$authenticate = Auth::attempt(
 			$request->only(['email', 'password']),
 			$request->filled('remember')
@@ -60,6 +57,13 @@ class LoginController extends Controller
 		}
 		$this->incrementLoginAttempts($request);
 		throw ValidationException::withMessages(['email' => [trans('auth.failed')]]);
+	}
+	public function loginRequest($request)
+	{
+		if ($this->hasTooManyLoginAttempts($request)) {
+			$this->fireLockoutEvent($request);
+			$this->sendLockoutResponse($request);
+		}
 	}
 	public function phone()
 	{
