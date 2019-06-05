@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models\Adverts;
+namespace App\Models\Adverts\Advert;
 
+use App\Models\Adverts\Category;
+use App\Models\Region;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,6 +12,41 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $category_id
+ * @property int $user_id
+ * @property int $region_id
+ * @property string $title
+ * @property int $price
+ * @property string $address
+ * @property string $content
+ * @property string $status
+ * @property string|null $reject_reason
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property mixed|null $published_at
+ * @property string|null $expired_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereExpiredAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereRegionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereRejectReason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereUserId($value)
+ * @mixin \Eloquent
+ * @property-read \App\Models\Adverts\Category $category
+ * @property-read \App\Models\Region $region
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photo
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $values
  */
 class Advert extends Model
 {
@@ -25,5 +63,49 @@ class Advert extends Model
 		'published_at' => 'datatime',
 		'expired_at'
 	];
-
+	
+	public function isDraft(): bool
+	{
+		return $this->status = self::STATUS_DRAFT;
+	}
+	
+	public function isActive(): bool
+	{
+		return $this->status = self::STATUS_ACTIVE;
+	}
+	
+	public function isClosed(): bool
+	{
+		return $this->status = self::STATUS_CLOSED;
+	}
+	
+	public function isModerate(): bool
+	{
+		return $this->status = self::STATUS_MODERATION;
+	}
+	
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'user_id', 'id');
+	}
+	
+	public function category()
+	{
+		return $this->belongsTo(Category::class, 'category_id', 'id');
+	}
+	
+	public function region()
+	{
+		return $this->belongsTo(Region::class, 'region_id', 'id');
+	}
+	
+	public function values()
+	{
+		return $this->hasMany(Value::class, 'advert_id', 'id');
+	}
+	
+	public function photo()
+	{
+		return $this->hasMany(Value::class, 'advert_id', 'id');
+	}
 }

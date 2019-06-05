@@ -55,6 +55,8 @@ use InvalidArgumentException;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyTokenExpire($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneAuth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerified($value)
  */
 class User extends Authenticatable
 {
