@@ -3,6 +3,7 @@
 namespace App\UseCases\Adverts;
 
 
+use App\Http\Requests\Cabinet\Advert\CreateRequest;
 use App\Models\Adverts\Advert\Advert;
 use App\Models\Adverts\Category;
 use App\Models\Region;
@@ -11,7 +12,7 @@ use DB;
 
 class AdvertService
 {
-	public function create($userId, $categoryId, $regionId, CreatingRequest $request): Advert
+	public function create($userId, $categoryId, $regionId, CreateRequest $request): Advert
 	{
 		/** @var User $user */
 		$user = User::findOrFail($userId);

@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Cabinet\Adverts;
 
 use App\Http\Middleware\FilledProfile;
+use App\Http\Requests\Cabinet\Advert\CreateRequest;
 use App\Models\Adverts\Category;
 use App\Models\Region;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\UseCases\Adverts\AdvertService;
 use Illuminate\Support\Facades\Auth;
 
 class CreateController extends Controller
 {
-    public function __construct()
+	private $service;
+	
+    public function __construct(AdvertService $service)
     {
+    	$this->service = $service;
     	$this->middleware(FilledProfile::class);
     }
     

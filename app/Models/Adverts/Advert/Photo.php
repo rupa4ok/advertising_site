@@ -24,5 +24,5 @@ class Photo extends Model
 	
 	public $timestamps = false;
 	
-	protected $fillable = ['attribute_id'];
+	protected $fillable = ['file'];
 }
