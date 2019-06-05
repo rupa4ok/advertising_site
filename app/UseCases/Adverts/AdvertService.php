@@ -8,6 +8,7 @@ use App\Models\Adverts\Advert\Advert;
 use App\Models\Adverts\Category;
 use App\Models\Region;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
 
 class AdvertService
@@ -53,7 +54,7 @@ class AdvertService
 		});
 	}
 	
-	public function addPhoto($id, PhotoRequest $request): void
+	public function addPhoto($id, PhotosRequest $request): void
 	{
 		$advert = $this->getAdvert($id);
 		
@@ -66,8 +67,20 @@ class AdvertService
 		});
 	}
 	
+	public function sendToModeration($id): void
+	{
+		$advert = $this->getAdvert($id);
+		$advert->sendToModeration();
+	}
+	
 	public function getAdvert($id): Advert
 	{
 		return Advert::findOrFail($id);
+	}
+	
+	public function moderate($id): void
+	{
+		$advert = $this->getAdvert($id);
+		$advert->moderate(Carbon::now());
 	}
 }

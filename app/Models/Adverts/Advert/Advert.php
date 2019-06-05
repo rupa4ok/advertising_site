@@ -5,6 +5,7 @@ namespace App\Models\Adverts\Advert;
 use App\Models\Adverts\Category;
 use App\Models\Region;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -64,6 +65,30 @@ class Advert extends Model
 		'expired_at'
 	];
 	
+	public function sendToModeration()
+	{
+		if (!$this->isDraft()) {
+			throw new \DomainException('Advert is not draft');
+		}
+		if (!$this->photos()->count()) {
+			throw new \DomainException('Upload photos');
+		}
+		$this->update([
+			'status' => self::STATUS_MODERATION,
+		]);
+	}
+	
+	public function moderate(Carbon $date)
+	{
+		if ($this->status !== self::STATUS_MODERATION) {
+			throw new \DomainException('Advert is not send to moderation');
+		}
+		
+		$this->update([
+			'status' => self::STATUS_MODERATION,
+		]);
+	}
+	
 	public function isDraft(): bool
 	{
 		return $this->status = self::STATUS_DRAFT;
@@ -104,7 +129,7 @@ class Advert extends Model
 		return $this->hasMany(Value::class, 'advert_id', 'id');
 	}
 	
-	public function photo()
+	public function photos()
 	{
 		return $this->hasMany(Value::class, 'advert_id', 'id');
 	}
