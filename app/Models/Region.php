@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Region roots()
  */
 class Region extends Model
 {
@@ -45,5 +47,10 @@ class Region extends Model
     public function children()
     {
         return $this->hasMany(static::class, 'parent_id', 'id');
+    }
+    
+    public function scopeRoots(Builder $query)
+    {
+        return $query->where('parent_id', null);
     }
 }
