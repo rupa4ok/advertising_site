@@ -48,6 +48,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photo
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photos
  */
 class Advert extends Model
 {
@@ -78,14 +79,24 @@ class Advert extends Model
 		]);
 	}
 	
-	public function moderate(Carbon $date)
+	public function moderate(Carbon $date): void
 	{
 		if ($this->status !== self::STATUS_MODERATION) {
 			throw new \DomainException('Advert is not send to moderation');
 		}
 		
 		$this->update([
+			'published_at' => $date,
+			'expires_at' => $date->copy()->addDay(15),
 			'status' => self::STATUS_MODERATION,
+		]);
+	}
+	
+	public function reject($reason): void
+	{
+		$this->update([
+			'status' => self::STATUS_DRAFT,
+			'reject_reason' => $reason
 		]);
 	}
 	

@@ -3,6 +3,8 @@
 namespace App\UseCases\Adverts;
 
 
+use App\Http\Requests\Admin\RejectRequest;
+use App\Http\Requests\Cabinet\Advert\AttributesRequest;
 use App\Http\Requests\Cabinet\Advert\CreateRequest;
 use App\Models\Adverts\Advert\Advert;
 use App\Models\Adverts\Category;
@@ -73,14 +75,40 @@ class AdvertService
 		$advert->sendToModeration();
 	}
 	
-	public function getAdvert($id): Advert
-	{
-		return Advert::findOrFail($id);
-	}
-	
 	public function moderate($id): void
 	{
 		$advert = $this->getAdvert($id);
 		$advert->moderate(Carbon::now());
+	}
+	
+	public function reject($id, RejectRequest $request): void
+	{
+		$advert = $this->getAdvert($id);
+		$advert->reject($request['reason']);
+	}
+	
+	public function editAttributes($id, AttributesRequest $request): void
+	{
+		$advert = $this->getAdvert($id);
+		
+		DB::transaction(function () use ($request, $advert) {
+			foreach ($advert->values as $value) {
+				$value->delete();
+			}
+			foreach ($advert->category->allAttributes() as $attribute) {
+				$value = $request['attributes'][$attribute->id] ?? null;
+				if (!empty($value)) {
+					$advert->values()->create([
+						'attribute_id' => $attribute->id,
+						'value' => $value
+					]);
+				}
+			}
+		});
+	}
+	
+	public function getAdvert($id): Advert
+	{
+		return Advert::findOrFail($id);
 	}
 }
