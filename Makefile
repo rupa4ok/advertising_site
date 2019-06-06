@@ -10,6 +10,10 @@ down:
 		sudo docker-compose down
 ps:
 		sudo docker-compose ps
+mod:
+		sudo chmod -R 777 storage
+own:
+		sudo chown -R rupak:rupak storage
 fresh:
 		sudo docker-compose --build -d
 env:
