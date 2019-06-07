@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'parent' => 'nullable|integer|exists:advert_categories,id'
+            'parent' => 'nullable|integer|exists:advert_categories,id',
         ];
     }
 }

@@ -15,7 +15,7 @@ class AddUserPhone extends Migration
             $table->timestamp('phone_verify_token_expire')->nullable()->after('phone_verify_token');
         });
     }
-    
+
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {

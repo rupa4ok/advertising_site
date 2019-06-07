@@ -12,7 +12,7 @@ class AddUserPhoneAuth extends Migration
             $table->boolean('phone_auth')->default(false)->after('phone');
         });
     }
-    
+
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {

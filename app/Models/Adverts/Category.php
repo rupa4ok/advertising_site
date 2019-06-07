@@ -2,11 +2,11 @@
 
 namespace App\Models\Adverts;
 
-use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Advert\Category
+ * App\Models\Advert\Category.
  *
  * @property-read \Kalnoy\Nestedset\Collection|\App\Models\Adverts\Category[] $children
  * @property-read \App\Models\Adverts\Category $parent
@@ -32,17 +32,20 @@ use Kalnoy\Nestedset\NodeTrait;
 class Category extends Model
 {
     use NodeTrait;
-    
+
     protected $table = 'advert_categories';
+
     public $timestamps = false;
-	public $forceDeleting = true;
+
+    public $forceDeleting = true;
+
     protected $fillable = ['name', 'slug', 'parent_id'];
-    
+
     public function parentAttributes(): array
     {
         return $this->parent ? $this->parent->allAttributes() : [];
     }
-    
+
     /**
      * @return Attribute[]
      */
@@ -50,6 +53,7 @@ class Category extends Model
     {
         return array_merge($this->parentAttributes(), $this->attributes()->orderBy('sort')->getModels());
     }
+
     public function attributes()
     {
         return $this->hasMany(Attribute::class, 'category_id', 'id');

@@ -10,12 +10,12 @@ class RegionController extends Controller
 {
     public function get(Request $request): array
     {
-    	$parent = $request->get('parent') ?: null;
-    	
-    	return Region::where('parent_id', $parent)
-		    ->orderBy('name')
-		    ->select('id','name')
-		    ->get()
-		    ->toArray();
+        $parent = $request->get('parent') ?: null;
+
+        return Region::where('parent_id', $parent)
+            ->orderBy('name')
+            ->select('id', 'name')
+            ->get()
+            ->toArray();
     }
 }

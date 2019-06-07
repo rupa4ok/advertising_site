@@ -10,7 +10,7 @@ class AdminTest extends TestCase
     public function testLogin(): void
     {
         $response = $this->get('/admin');
-        
+
         $response->assertStatus(302)
             ->assertSee('login');
     }

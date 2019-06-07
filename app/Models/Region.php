@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Region
+ * App\Models\Region.
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Region[] $children
  * @property-read \App\Models\Region $parent
@@ -31,24 +31,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Region extends Model
 {
-	
-	protected $fillable = ['name', 'slug', 'parent_id'];
-	
-	public function getAddress(): string
-	{
-		return ($this->parent ? $this->parent->getAddress() . ', ':'') . $this->name;
+    protected $fillable = ['name', 'slug', 'parent_id'];
+
+    public function getAddress(): string
+    {
+        return ($this->parent ? $this->parent->getAddress().', ' : '').$this->name;
     }
-    
+
     public function parent()
     {
         return $this->belongsTo(static::class, 'parent_id', 'id');
     }
-    
+
     public function children()
     {
         return $this->hasMany(static::class, 'parent_id', 'id');
     }
-    
+
     public function scopeRoots(Builder $query)
     {
         return $query->where('parent_id', null);

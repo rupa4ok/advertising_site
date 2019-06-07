@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Adverts\Category;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use App\Models\Adverts\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +19,6 @@ $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $name = $faker->unique()->name,
         'slug' => str_slug($name),
-        'parent_id' => null
+        'parent_id' => null,
     ];
 });

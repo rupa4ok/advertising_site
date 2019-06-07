@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DomainException;
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * App\Models\User
+ * App\Models\User.
  *
  * @property int $id
  * @property string $name
@@ -25,7 +25,7 @@ use InvalidArgumentException;
  * @property string $phone_verify_token
  * @property Carbon $phone_verify_token_expire
  * @property string $role
- * @property boolean $phone_auth
+ * @property bool $phone_auth
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -63,27 +63,31 @@ class User extends Authenticatable
     use Notifiable;
 
     public const STATUS_WAIT = 'wait';
+
     public const STATUS_ACTIVE = 'active';
+
     public const ROLE_USER = 'user';
+
     public const ROLE_ADMIN = 'admin';
-	public const ROLE_MODERATOR = 'moderator';
-    
+
+    public const ROLE_MODERATOR = 'moderator';
+
     protected $fillable = [
         'name', 'email', 'last_name', 'phone', 'password', 'verify_token', 'status', 'role',
     ];
-    
+
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     protected $casts = [
         'phone_verified' => 'boolean',
         'phone_verify_token_expire' => 'datetime',
         'phone_auth' => 'boolean',
     ];
-    
+
     protected $primaryKey = 'id';
-    
+
     public static function new($name, $email): self
     {
         return static::create([
@@ -94,7 +98,7 @@ class User extends Authenticatable
             'status' => self::STATUS_ACTIVE,
         ]);
     }
-    
+
     public static function register(string $name, string $email, string $password): self
     {
         return static::create([
@@ -106,19 +110,19 @@ class User extends Authenticatable
             'status' => 'wait',
         ]);
     }
-	
-	public  static function rolesList(): array
-	{
-		return [
-			self::ROLE_ADMIN => 'Admin',
-			self::ROLE_USER => 'User',
-			self::ROLE_MODERATOR => 'Moderator',
-		];
-	}
-    
+
+    public static function rolesList(): array
+    {
+        return [
+            self::ROLE_ADMIN => 'Admin',
+            self::ROLE_USER => 'User',
+            self::ROLE_MODERATOR => 'Moderator',
+        ];
+    }
+
     public function verify(): void
     {
-        if (!$this->isWait()) {
+        if (! $this->isWait()) {
             throw new \DomainException('User is already verified.');
         }
         $this->update([
@@ -126,18 +130,18 @@ class User extends Authenticatable
             'verify_token' => null,
         ]);
     }
-    
+
     public function changeRole($role): void
     {
-        if (!array_key_exists($role, self::rolesList())) {
-            throw new InvalidArgumentException('Undefined role "' . $role . '"');
+        if (! array_key_exists($role, self::rolesList())) {
+            throw new InvalidArgumentException('Undefined role "'.$role.'"');
         }
         if ($this->role === $role) {
             throw new DomainException('Role is already assigned');
         }
-        $this->update([ 'role' => $role ]);
+        $this->update(['role' => $role]);
     }
-    
+
     public function unverifyPhone(): void
     {
         $this->phone_verified = false;
@@ -146,30 +150,30 @@ class User extends Authenticatable
         $this->phone_auth = false;
         $this->saveOrFail();
     }
-    
+
     public function requestPhoneVerification(Carbon $now): string
     {
         if (empty($this->phone)) {
             throw new \DomainException('Phone number is empty');
         }
-        if (!empty($this->phone_verify_token) && $this->phone_verify_token_expire
+        if (! empty($this->phone_verify_token) && $this->phone_verify_token_expire
         && $this->phone_verify_token_expire->gt($now)) {
             throw new \DomainException('Token is already request');
         }
         $this->phone_verified = false;
-        $this->phone_verify_token = (string)random_int(10000, 99999);
+        $this->phone_verify_token = (string) random_int(10000, 99999);
         $this->phone_verify_token_expire = $now->copy()->addSecond(300);
         $this->saveOrFail();
-        
+
         return $this->phone_verify_token;
     }
-    
+
     public function verifyPhone($token, Carbon $now):void
     {
         if ($token !== $this->phone_verify_token) {
             throw new \DomainException('Incorrect verify token');
         }
-        if ($this->phone_verify_token_expire ->lt($now)) {
+        if ($this->phone_verify_token_expire->lt($now)) {
             throw new \DomainException('Token is expired');
         }
         $this->phone_verified = true;
@@ -177,62 +181,59 @@ class User extends Authenticatable
         $this->phone_verify_token_expire = null;
         $this->saveOrFail();
     }
-    
+
     public function enablePhoneAuth(): void
     {
-        if (!empty($this->phone) && !$this->isPhoneVerified()) {
+        if (! empty($this->phone) && ! $this->isPhoneVerified()) {
             throw new \DomainException('Phone number is empty.');
         }
         $this->phone_auth = true;
         $this->saveOrFail();
     }
-    
+
     public function disablePhoneAuth(): void
     {
         $this->phone_auth = false;
         $this->saveOrFail();
     }
-    
-    
+
     public function isPhoneVerified(): bool
     {
         return $this->phone_verified;
     }
-    
+
     public function isWait(): bool
     {
         return $this->status === self::STATUS_WAIT;
     }
-    
+
     public function isActive(): bool
     {
         return $this->status === self::STATUS_ACTIVE;
     }
-    
+
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
     }
-	
-	public function isModerator(): bool
-	{
-		return $this->role === self::ROLE_MODERATOR;
-	}
-    
+
+    public function isModerator(): bool
+    {
+        return $this->role === self::ROLE_MODERATOR;
+    }
+
     public function isUser(): bool
     {
         return $this->role === self::ROLE_USER;
     }
-    
+
     public function isPhoneAuthEnabled(): bool
     {
-        return (bool)$this->phone_auth;
+        return (bool) $this->phone_auth;
     }
-    
+
     public function hasFilledProfile()
     {
-        return empty($this->name) || empty($this->last_name) || !$this->isPhoneVerified();
+        return empty($this->name) || empty($this->last_name) || ! $this->isPhoneVerified();
     }
-    
-    
 }

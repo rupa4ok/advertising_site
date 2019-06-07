@@ -4,9 +4,8 @@ namespace App\Models\Adverts\Advert;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
- * App\Models\Adverts\Advert\Value
+ * App\Models\Adverts\Advert\Value.
  *
  * @property int $advert_id
  * @property int $attribute_id
@@ -21,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Value extends Model
 {
-	protected $table = 'advert_advert_values';
-	
-	public $timestamps = false;
-	
-	protected $fillable = ['attribute_id', 'value'];
+    protected $table = 'advert_advert_values';
+
+    public $timestamps = false;
+
+    protected $fillable = ['attribute_id', 'value'];
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Admin\Adverts;
 
-use App\Models\Adverts\Attribute;
-
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+
+use App\Models\Adverts\Attribute;
+use Illuminate\Foundation\Http\FormRequest;
 
 class AttributeRequest extends FormRequest
 {

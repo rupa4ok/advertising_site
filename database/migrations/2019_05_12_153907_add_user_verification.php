@@ -17,12 +17,12 @@ class AddUserVerification extends Migration
             $table->string('status', 16);
             $table->string('verify_token')->nullable()->unique();
         });
-        
+
         DB::table('users')->update([
             'status' => 'active',
         ]);
     }
-    
+
     /**
      * Reverse the migrations.
      *

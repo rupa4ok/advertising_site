@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Adverts\Attribute;
-use App\Models\Adverts\Category;
-use App\Models\Region;
-
 use App\Models\User;
+use App\Models\Region;
+use App\Models\Adverts\Category;
+
+use App\Models\Adverts\Attribute;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 
 Breadcrumbs::register('home', function (Crumbs $crumbs) {
