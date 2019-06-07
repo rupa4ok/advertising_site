@@ -10,15 +10,15 @@ Route::get('/login/{network}', 'Auth\NetworkController@redirect')->name('login.n
 Route::get('/login/{network}/callback', 'Auth\NetworkController@callback');
 
 Route::group([
-	'prefix' => 'adverts',
-	'as' => 'adverts.',
-	'namespace' => 'Adverts',
+    'prefix' => 'adverts',
+    'as' => 'adverts.',
+    'namespace' => 'Adverts',
 ], function () {
-	Route::get('/show/{advert}', 'AdvertController@show')->name('show');
-	Route::post('/show/{advert}/phone', 'AdvertController@phone')->name('phone');
-	Route::post('/show/{advert}/favorites', 'FavoriteController@add')->name('favorites');
-	Route::delete('/show/{advert}/favorites', 'FavoriteController@remove');
-	Route::get('/{adverts_path?}', 'AdvertController@index')->name('index')->where('adverts_path', '.+');
+    Route::get('/show/{advert}', 'AdvertController@show')->name('show');
+    Route::post('/show/{advert}/phone', 'AdvertController@phone')->name('phone');
+    Route::post('/show/{advert}/favorites', 'FavoriteController@add')->name('favorites');
+    Route::delete('/show/{advert}/favorites', 'FavoriteController@remove');
+    Route::get('/{adverts_path?}', 'AdvertController@index')->name('index')->where('adverts_path', '.+');
 });
 
 Route::group(
@@ -99,7 +99,7 @@ Route::group(
         Route::get('/', 'HomeController@index')->name('home');
         Route::resource('users', 'UsersController');
         Route::resource('regions', 'RegionController');
-    
+
         Route::group(['prefix' => 'adverts', 'as' => 'adverts.', 'namespace' => 'Adverts'], function () {
             Route::resource('categories', 'CategoryController');
             Route::group(['prefix' => 'categories/{category}', 'as' => 'categories.'], function () {

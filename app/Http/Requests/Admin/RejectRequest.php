@@ -10,11 +10,11 @@ class RejectRequest extends FormRequest
     {
         return true();
     }
-    
+
     public function rules(): array
     {
         return [
-            'reason' => 'required|string'
+            'reason' => 'required|string',
         ];
     }
 }

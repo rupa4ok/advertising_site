@@ -17,9 +17,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Region::class, function (Faker $faker) {
     $active = $faker->boolean;
+
     return [
         'name' => $name = $faker->unique()->city,
         'slug' => str_slug($name),
-        'parent_id' => null
+        'parent_id' => null,
     ];
 });

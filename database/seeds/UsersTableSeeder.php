@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'test@mail.ru',
             'password' => bcrypt('sdfsdfsdfd'),
             'status' => 'active',
-            'role' => 'admin'
+            'role' => 'admin',
         ]);
     }
 }

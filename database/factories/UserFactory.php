@@ -1,9 +1,9 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +19,7 @@ use Carbon\Carbon;
 $factory->define(User::class, function (Faker $faker) {
     $active = $faker->boolean;
     $phoneActive = $faker->boolean;
+
     return [
         'name' => $faker->name,
         'last_name' => $faker->lastName,

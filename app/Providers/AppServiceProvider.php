@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Services\Sms\ArraySender;
 use App\Services\Sms\SmsRu;
 use App\Services\Sms\SmsSender;
-use Illuminate\Contracts\Foundation\Application;
+use App\Services\Sms\ArraySender;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Foundation\Application;
 
 class AppServiceProvider extends ServiceProvider
 {

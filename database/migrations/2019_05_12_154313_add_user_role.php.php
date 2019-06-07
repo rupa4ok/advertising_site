@@ -16,12 +16,12 @@ class AddUserRole extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('role', 16);
         });
-        
+
         DB::table('users')->update([
             'role' => 'user',
         ]);
     }
-    
+
     /**
      * Reverse the migrations.
      *

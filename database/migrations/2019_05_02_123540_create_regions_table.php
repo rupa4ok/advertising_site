@@ -18,7 +18,7 @@ class CreateRegionsTable extends Migration
             $table->unique(['parent_id', 'name']);
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('regions');
