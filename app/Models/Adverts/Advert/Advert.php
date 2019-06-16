@@ -104,9 +104,24 @@ class Advert extends Model
 		]);
 	}
 	
+	public function getValue($id)
+	{
+		foreach ($this->values as $value) {
+			if ($value->attribute_id === $id) {
+				return $value->value;
+			}
+		}
+		return null;
+	}
+	
 	public function isDraft(): bool
 	{
 		return $this->status = self::STATUS_DRAFT;
+	}
+	
+	public function isOnModeration(): bool
+	{
+		return $this->status === self::STATUS_MODERATION;
 	}
 	
 	public function isActive(): bool
@@ -147,6 +162,11 @@ class Advert extends Model
 	public function photos()
 	{
 		return $this->hasMany(Photo::class, 'advert_id', 'id');
+	}
+	
+	public function scopeActive(Builder $query)
+	{
+		return $query->where('status', self::STATUS_ACTIVE);
 	}
 	
 	public function scopeForUser(Builder $query, User $user)

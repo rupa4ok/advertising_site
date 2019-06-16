@@ -31,27 +31,26 @@ class CreateController extends Controller
     {
         $regions = Region::where('parent_id', $region ? $region->id : null)->orderBy('name')->get();
     
-        return view('cabinet.adverts.create.region', compact('category','region', 'region'));
+        return view('cabinet.adverts.create.region', compact('category','regions', 'region'));
     }
     
     public function advert(Category $category, Region $region = null)
     {
-    	return view('cabinet.adverts.create.adverts', compact('category', 'region'));
+    	return view('cabinet.adverts.create.advert', compact('category', 'region'));
     }
-    
-    public function store(CreateRequest $request, $category, Region $region = null)
-    {
-    	try {
-		    $adverts = $this->service->create(
-		    Auth::id(),
-			$category->id,
-			$region ? $region->id : null,
-			$request
-		    );
-	    } catch (\DomainException $e) {
-    	    return back()->with('error', $e->getMessage());
-	    }
-	    
-	    return redirect()->route('adverts.show', $adverts);
-    }
+	
+	public function store(CreateRequest $request, Category $category, Region $region = null)
+	{
+		try {
+			$advert = $this->service->create(
+				Auth::id(),
+				$category->id,
+				$region ? $region->id : null,
+				$request
+			);
+		} catch (\DomainException $e) {
+			return back()->with('error', $e->getMessage());
+		}
+		return redirect()->route('adverts.show', $advert);
+	}
 }

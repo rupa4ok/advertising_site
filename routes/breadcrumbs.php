@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Adverts\Advert\Advert;
 use App\Models\Adverts\Attribute;
 use App\Models\Adverts\Category;
 use App\Models\Region;
@@ -70,14 +71,13 @@ Breadcrumbs::register('adverts.inner_category', function (Crumbs $crumbs, Advert
     }
 });
 
-Breadcrumbs::register('adverts.index', function (Crumbs $crumbs, AdvertsPath $path = null) {
-    $path = $path ?: adverts_path(null, null);
-    $crumbs->parent('adverts.inner_category', $path, $path);
+Breadcrumbs::register('adverts.index', function (Crumbs $crumbs) {
+
 });
 
 Breadcrumbs::register('adverts.show', function (Crumbs $crumbs, Advert $advert) {
-    $crumbs->parent('adverts.index', adverts_path($advert->region, $advert->category));
-    $crumbs->push($advert->title, route('adverts.show', $advert));
+	$crumbs->parent('adverts.index', $advert->region, $advert->category);
+	$crumbs->push($advert->title, route('adverts.show', $advert));
 });
 
 // Cabinet

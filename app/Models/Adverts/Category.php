@@ -42,14 +42,15 @@ class Category extends Model
     {
         return $this->parent ? $this->parent->allAttributes() : [];
     }
-    
-    /**
-     * @return Attribute[]
-     */
-    public function allAttributes(): array
-    {
-        return array_merge($this->parentAttributes(), $this->attributes()->orderBy('sort')->getModels());
-    }
+	
+	/**
+	 * @return Attribute[]
+	 */
+	public function allAttributes(): array
+	{
+		return array_merge($this->parentAttributes(), $this->attributes()->orderBy('sort')->getModels());
+	}
+	
     public function attributes()
     {
         return $this->hasMany(Attribute::class, 'category_id', 'id');
