@@ -51,6 +51,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $values
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photos
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forUser(\App\Models\User $user)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forCategory(\App\Models\Adverts\Category $category)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forRegion(\App\Models\Region $region)
  */
 class Advert extends Model
 {
@@ -150,5 +152,23 @@ class Advert extends Model
 	public function scopeForUser(Builder $query, User $user)
 	{
 		return $query->where('user_id', $user->id);
+	}
+	
+	public function scopeForCategory(Builder $query, Category $category)
+	{
+		return $query->where('user_id', array_merge(
+			[$category->id],
+			$category->descendants()->pluck('id')->toArray()
+		));
+	}
+	
+	public function scopeForRegion(Builder $query, Region $region)
+	{
+		$ids = [$region->id];
+		$childrenIds = $ids;
+		while ($childrenIds = Region::where(['parent_id' => $childrenIds])->pluck('id')->toArray()) {
+			$ids = array_merge($ids, $childrenIds);
+		}
+		return $query->where('user_id', $ids);
 	}
 }
