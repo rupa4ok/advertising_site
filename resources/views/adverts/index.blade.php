@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('search')
-    @include('layouts.partials.search', ['category' => $category, 'route' => '?'])
-@endsection
-
 @section('content')
     @if ($categories)
         <div class="card card-default mb-3">

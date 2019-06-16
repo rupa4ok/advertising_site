@@ -21,6 +21,14 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin();
         });
 	
+	    Gate::define('moderate-advert', function (User $user, Advert $advert) {
+		    return $user->isAdmin() || $user->isModerator();
+	    });
+	
+	    Gate::define('show-advert', function (User $user, Advert $advert) {
+		    return $user->isAdmin() || $user->isModerator() || $advert->user_id == $user->id;
+	    });
+	
 	    Gate::define('edit-own-advert', function (User $user, Advert $advert) {
 		    return $advert->user_id === $user->id;
 	    });
