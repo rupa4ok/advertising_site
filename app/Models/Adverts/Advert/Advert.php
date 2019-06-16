@@ -7,6 +7,7 @@ use App\Models\Region;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Models\Advert\Attribute
@@ -49,6 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photo
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $values
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photos
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forUser(\App\Models\User $user)
  */
 class Advert extends Model
 {
@@ -142,6 +144,11 @@ class Advert extends Model
 	
 	public function photos()
 	{
-		return $this->hasMany(Value::class, 'advert_id', 'id');
+		return $this->hasMany(Photo::class, 'advert_id', 'id');
+	}
+	
+	public function scopeForUser(Builder $query, User $user)
+	{
+		return $query->where('user_id', $user->id);
 	}
 }

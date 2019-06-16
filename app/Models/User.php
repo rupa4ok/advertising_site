@@ -107,7 +107,7 @@ class User extends Authenticatable
         ]);
     }
 	
-	public  static function rolesList(): array
+	public static function rolesList(): array
 	{
 		return [
 			self::ROLE_ADMIN => 'Admin',

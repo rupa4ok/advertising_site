@@ -2,8 +2,8 @@
 
 namespace App\UseCases\Adverts;
 
-
 use App\Http\Requests\Admin\RejectRequest;
+use App\Http\Requests\Adverts\PhotosRequest;
 use App\Http\Requests\Cabinet\Advert\AttributesRequest;
 use App\Http\Requests\Cabinet\Advert\CreateRequest;
 use App\Models\Adverts\Advert\Advert;
@@ -92,9 +92,7 @@ class AdvertService
 		$advert = $this->getAdvert($id);
 		
 		DB::transaction(function () use ($request, $advert) {
-			foreach ($advert->values as $value) {
-				$value->delete();
-			}
+			$advert->values()->delete();
 			foreach ($advert->category->allAttributes() as $attribute) {
 				$value = $request['attributes'][$attribute->id] ?? null;
 				if (!empty($value)) {
@@ -105,6 +103,12 @@ class AdvertService
 				}
 			}
 		});
+	}
+	
+	public function remove($id): void
+	{
+		$advert = $this->getAdvert($id);
+		$advert->delete();
 	}
 	
 	public function getAdvert($id): Advert
