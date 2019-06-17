@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Adverts\AdvertFilter;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,24 +11,14 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+	use AdvertFilter;
+	
 	public function index(Request $request)
 	{
 		$query = User::orderByDesc('id');
-		if (!empty($value = $request->get('id'))) {
-			$query->where('id', $value);
-		}
-		if (!empty($value = $request->get('name'))) {
-			$query->where('name', 'like', '%' . $value . '%');
-		}
-		if (!empty($value = $request->get('email'))) {
-			$query->where('email', 'like', '%' . $value . '%');
-		}
-		if (!empty($value = $request->get('status'))) {
-			$query->where('status', $value);
-		}
-		if (!empty($value = $request->get('role'))) {
-			$query->where('role', $value);
-		}
+		
+		$this->filter($request, $query);
+		
 		$users = $query->paginate(20);
 		$statuses = [
 			User::STATUS_WAIT => 'Waiting',
