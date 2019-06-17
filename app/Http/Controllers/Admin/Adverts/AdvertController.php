@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 class AdvertController extends Controller
 {
 	use AdvertFilter;
-	
 	private $service;
 	
 	public function __construct(AdvertService $service)
@@ -27,8 +26,7 @@ class AdvertController extends Controller
 	public function index(Request $request)
 	{
 		$query = Advert::orderByDesc('updated_at');
-		$this->filter($request, $query);
-		$adverts = $query->paginate(20);
+		$adverts = $this->filter($request, $query);
 		$statuses = Advert::statusesList();
 		$roles = User::rolesList();
 		

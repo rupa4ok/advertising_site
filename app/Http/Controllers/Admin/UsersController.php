@@ -16,10 +16,7 @@ class UsersController extends Controller
 	public function index(Request $request)
 	{
 		$query = User::orderByDesc('id');
-		
-		$this->filter($request, $query);
-		
-		$users = $query->paginate(20);
+		$users = $this->filter($request, $query);
 		$statuses = [
 			User::STATUS_WAIT => 'Waiting',
 			User::STATUS_ACTIVE => 'Active',

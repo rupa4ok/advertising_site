@@ -3,6 +3,7 @@
 namespace App\UseCases\Adverts;
 
 use App\Http\Requests\Admin\RejectRequest;
+use App\Http\Requests\Advert\EditRequest;
 use App\Http\Requests\Adverts\PhotosRequest;
 use App\Http\Requests\Cabinet\Advert\AttributesRequest;
 use App\Http\Requests\Cabinet\Advert\CreateRequest;
