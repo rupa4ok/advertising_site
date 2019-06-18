@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adverts;
 
+use App\Http\Router\AdvertsPath;
 use App\Models\Adverts\Advert\Advert;
 use App\Models\Adverts\Category;
 use App\Models\Region;
@@ -11,17 +12,12 @@ use Illuminate\Support\Facades\Gate;
 
 class AdvertController extends Controller
 {
-    public function index(Region $region = null, Category $category = null)
+    public function index(AdvertsPath $path)
     {
+
+	    $region = $path->region;
+	    $category = $path->category;
         $query = Advert::active()->with(['category', 'regoin'])->orderBy('id');
-        
-        if ($category) {
-        	$query->forCategory($category);
-        }
-	
-	    if ($region) {
-		    $query->forRegion($region);
-	    }
 	    
 	    $regions = $region
 		    ? $region->children()->orderBy('name')->getModel()
