@@ -25,7 +25,7 @@ class SmsServiceProvider extends ServiceProvider
                 case 'array':
                     return new ArraySender();
                 default:
-                    throw new \InvalidArgumentException('Undefined SMS driver ' . $config['driver']);
+	                return new ArraySender();
             }
         });
     }
