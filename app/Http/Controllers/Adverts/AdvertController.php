@@ -14,14 +14,19 @@ class AdvertController extends Controller
 {
     public function index(AdvertsPath $path)
     {
+	    $query = Advert::active()->with(['category', 'region'])->orderBy('published_at');
 
-	    $region = $path->region;
-	    $category = $path->category;
-        $query = Advert::active()->with(['category', 'regoin'])->orderBy('id');
+	    if ($category = $path->category) {
+	    	$query->forCategory($category);
+	    }
+	
+	    if ($region = $path->region) {
+		    $query->forRegion($region);
+	    }
 	    
 	    $regions = $region
-		    ? $region->children()->orderBy('name')->getModel()
-		    : Region::roots()->orderBy('name')->getModel();
+		    ? $region->children()->orderBy('name')->getModels()
+		    : Region::roots()->orderBy('name')->getModels();
 	    
 	    $categories = $category
 		    ? $category->children()->defaultOrder()->getModels()

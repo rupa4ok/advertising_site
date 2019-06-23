@@ -53,6 +53,9 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forUser(\App\Models\User $user)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forCategory(\App\Models\Adverts\Category $category)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forRegion(\App\Models\Region $region)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert active()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert favoredByUser(\App\Models\User $user)
  */
 class Advert extends Model
 {
@@ -203,10 +206,6 @@ class Advert extends Model
 	{
 		return $this->belongsToMany(User::class, 'advert_favorites', 'advert_id', 'user_id');
 	}
-	public function dialogs()
-	{
-		return $this->hasMany(Dialog::class, 'advert_id', 'id');
-	}
 	public function scopeActive(Builder $query)
 	{
 		return $query->where('status', self::STATUS_ACTIVE);
@@ -236,15 +235,5 @@ class Advert extends Model
 		return $query->whereHas('favorites', function(Builder $query) use ($user) {
 			$query->where('user_id', $user->id);
 		});
-	}
-	
-	public function getRouteKey(): string
-	{
-		return $this->id . '-' . 'slug';
-	}
-	
-	public function getRouteKeyName(): string
-	{
-		return 'slug';
 	}
 }

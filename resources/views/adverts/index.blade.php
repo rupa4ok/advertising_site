@@ -84,7 +84,7 @@
         <div class="col-md-3">
             <div
             class="banner mb-3"
-            data-url="{{ route('banner.get') }}"
+            data-url=""
             data-format="240x400"
             data-category="{{ $category ? $category->id : '' }}"
             data-region="{{ $region ? $region->id : '' }}"

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Region;
 use App\Services\Sms\ArraySender;
 use App\Services\Sms\SmsRu;
 use App\Services\Sms\SmsSender;
