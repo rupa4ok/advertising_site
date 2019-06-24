@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Adverts\Advert\Advert;
 use Carbon\Carbon;
 use DomainException;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
@@ -234,5 +235,8 @@ class User extends Authenticatable
         return empty($this->name) || empty($this->last_name) || !$this->isPhoneVerified();
     }
     
-    
+    public function favorites()
+    {
+    	return $this->belongsToMany(Advert::class, 'advert_favorites', 'user_id', 'advert_id');
+    }
 }
