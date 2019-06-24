@@ -10,5 +10,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/storage/docker/
+/storage/docker/*
 /storage/logs/
+/storage/docker/mysql/ibdata1
