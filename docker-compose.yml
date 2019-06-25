@@ -46,7 +46,7 @@ services:
   mysql:
     image: mysql:5.7
     volumes:
-      - ./storage/docker/mysql:/var/lib/mysql
+      - ./storage/docker/mysql1:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=secret"
       - "MYSQL_USER=app"
@@ -66,14 +66,20 @@ services:
     tty: true
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    volumes:
+      - ./storage/docker/elasticsearch1:/usr/share/elasticsearch/data
     environment:
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms128m -Xmx128m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - ./storage/docker/elasticsearch:/usr/share/elasticsearch/data
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 1g
+    cap_add:
+      - IPC_LOCK
     ports:
-      - "9201:9200"
+      - 9200:9200

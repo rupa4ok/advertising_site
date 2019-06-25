@@ -58,6 +58,7 @@ use InvalidArgumentException;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerifyed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneAuth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneVerified($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Advert[] $favorites
  */
 class User extends Authenticatable
 {

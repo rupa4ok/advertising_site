@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adverts;
+namespace App\Http\Controllers\Cabinet;
 
 use App\Http\Controllers\Controller;
 use App\Models\Adverts\Advert\Advert;
@@ -24,17 +24,6 @@ class FavoriteController extends Controller
 		return view('cabinet.favorites.index', compact('adverts'));
 	}
 	
-	public function add(Advert $advert)
-	{
-		try {
-			$this->service->add(Auth::id(), $advert->id);
-		} catch (\DomainException $e) {
-			return back()->with('error', $e->getMessage());
-		}
-		
-		return redirect()->route('adverts.show', $advert)->with('success', 'Advert is added to your favorites.');
-	}
-	
 	public function remove(Advert $advert)
 	{
 		try {
@@ -43,6 +32,6 @@ class FavoriteController extends Controller
 			return back()->with('error', $e->getMessage());
 		}
 		
-		return redirect()->route('adverts.show', $advert);
+		return redirect()->route('cabinet.favorites.index', $advert);
 	}
 }
