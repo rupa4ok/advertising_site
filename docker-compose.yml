@@ -70,7 +70,8 @@ services:
       - ./storage/docker/elasticsearch1:/usr/share/elasticsearch/data
     environment:
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
     ulimits:
       memlock:
         soft: -1

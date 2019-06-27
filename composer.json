@@ -6,12 +6,14 @@
     "type": "project",
     "require": {
         "php": "^7.2",
-        "beyondcode/laravel-self-diagnosis": "^1.2",
         "barryvdh/laravel-debugbar": "^3.2",
+        "beyondcode/laravel-self-diagnosis": "^1.2",
         "caouecs/laravel-lang": "dev-laravel58",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "doctrine/dbal": "^2.9",
+        "elasticsearch/elasticsearch": "^7.0",
         "fideloper/proxy": "^4.0",
+        "fzaninotto/faker": "^1.4",
         "genealabs/laravel-model-caching": "^0.4.18",
         "guzzlehttp/guzzle": "^6.3",
         "kalnoy/nestedset": "^4.3",
@@ -19,7 +21,6 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
-        "fzaninotto/faker": "^1.4",
         "rollbar/rollbar-laravel": "^4.0"
     },
     "require-dev": {

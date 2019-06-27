@@ -4,9 +4,9 @@ serve:
 	    php artisan serve
 install:
 		composer install
-up:
+up: memory
 		sudo docker-compose up
-down:
+down: memory
 		sudo docker-compose down
 ps:
 		sudo docker-compose ps
@@ -26,3 +26,9 @@ fix:
 		composer run-script phpcbf -- --standard=PSR12  app routes tests
 tests:
 		docker-compose exec php-cli vendor/bin/phpunit
+memory:
+	sudo sysctl -w vm.max_map_count=262144
+
+perm:
+	sudo chgrp -R www-data storage bootstrap/cache
+	sudo chmod -R ug+rwx storage bootstrap/cache
