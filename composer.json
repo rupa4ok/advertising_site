@@ -11,7 +11,7 @@
         "caouecs/laravel-lang": "dev-laravel58",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "doctrine/dbal": "^2.9",
-        "elasticsearch/elasticsearch": "^7.0",
+        "elasticsearch/elasticsearch": "^6.0",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.4",
         "genealabs/laravel-model-caching": "^0.4.18",
