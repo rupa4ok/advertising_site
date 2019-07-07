@@ -5,14 +5,14 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-06-23 09:45:07.
+    * Generated on 2019-07-07 14:32:24.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
     */
     override(new \Illuminate\Contracts\Container\Container, map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -156,6 +156,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -170,7 +171,7 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -314,6 +315,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -328,7 +330,7 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -472,6 +474,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -486,7 +489,7 @@ namespace PHPSTORM_META {
     ]));
     override(\App::make(0), map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -630,6 +633,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -644,7 +648,7 @@ namespace PHPSTORM_META {
     ]));
     override(\App::makeWith(0), map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -788,6 +792,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -802,7 +807,7 @@ namespace PHPSTORM_META {
     ]));
     override(\app(0), map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -946,6 +951,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,
@@ -960,7 +966,7 @@ namespace PHPSTORM_META {
     ]));
     override(\resolve(0), map([
         '' => '@',
-        'App\Services\Sms\SmsSender' => \App\Services\Sms\SmsRu::class,
+        'App\Services\Sms\SmsSender' => \App\Services\Sms\ArraySender::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'BeyondCode\QueryDetector\QueryDetector' => \BeyondCode\QueryDetector\QueryDetector::class,
         'DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator' => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
@@ -1104,6 +1110,7 @@ namespace PHPSTORM_META {
         'redis' => \Illuminate\Redis\RedisManager::class,
         'redis.connection' => \Illuminate\Redis\Connections\PredisConnection::class,
         'router' => \Illuminate\Routing\Router::class,
+        'seomanager' => \Lionix\SeoManager\SeoManager::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
         'swift.mailer' => \Swift_Mailer::class,

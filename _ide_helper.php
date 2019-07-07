@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.23 on 2019-06-23 09:45:06.
+ * Generated for Laravel 5.8.27 on 2019-07-07 14:32:24.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -8320,6 +8320,19 @@ namespace Illuminate\Support\Facades {
                         /** @var \Illuminate\Redis\RedisManager $instance */
                         $instance->disableEvents();
         }
+        
+        /**
+         * Set the default driver.
+         *
+         * @param string $driver
+         * @return void 
+         * @static 
+         */ 
+        public static function setDriver($driver)
+        {
+                        /** @var \Illuminate\Redis\RedisManager $instance */
+                        $instance->setDriver($driver);
+        }
          
     }
 
@@ -15638,6 +15651,129 @@ namespace Laracasts\Flash {
  
 }
 
+namespace Lionix\SeoManager\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class SeoManager {
+        
+        /**
+         * Get the array of the Seo meta data
+         *
+         * @param $property
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaData($property = null)
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaData($property);
+        }
+        
+        /**
+         * Get Meta Keywords formatted
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaKeywords()
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaKeywords();
+        }
+        
+        /**
+         * Get Title
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaTitle()
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaTitle();
+        }
+        
+        /**
+         * Get URL
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaUrl()
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaUrl();
+        }
+        
+        /**
+         * Get Meta Author
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaAuthor()
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaAuthor();
+        }
+        
+        /**
+         * Get Meta Description
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaDescription()
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaDescription();
+        }
+        
+        /**
+         * Get dynamically generated title based on users mapping
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaTitleDynamic()
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaTitleDynamic();
+        }
+        
+        /**
+         * Get Open Graph Data
+         *
+         * @param $property
+         * @return mixed 
+         * @static 
+         */ 
+        public static function metaOpenGraph($property = null)
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->metaOpenGraph($property);
+        }
+        
+        /**
+         * Get Model all Columns
+         *
+         * @param $model
+         * @return array 
+         * @static 
+         */ 
+        public static function getColumns($model)
+        {
+                        /** @var \Lionix\SeoManager\SeoManager $instance */
+                        return $instance->getColumns($model);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -16372,7 +16508,7 @@ namespace  {
             /**
              * Add a relationship count / exists condition to the query.
              *
-             * @param string $relation
+             * @param string|\Illuminate\Database\Eloquent\Relations\Relation $relation
              * @param string $operator
              * @param int $count
              * @param string $boolean
@@ -16487,6 +16623,134 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->orWhereDoesntHave($relation, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param string $operator
+             * @param int $count
+             * @param string $boolean
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function hasMorph($relation, $types, $operator = '>=', $count = 1, $boolean = 'and', $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->hasMorph($relation, $types, $operator, $count, $boolean, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orHasMorph($relation, $types, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orHasMorph($relation, $types, $operator, $count);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param string $boolean
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function doesntHaveMorph($relation, $types, $boolean = 'and', $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->doesntHaveMorph($relation, $types, $boolean, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orDoesntHaveMorph($relation, $types)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orDoesntHaveMorph($relation, $types);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure|null $callback
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function whereHasMorph($relation, $types, $callback = null, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->whereHasMorph($relation, $types, $callback, $operator, $count);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure $callback
+             * @param string $operator
+             * @param int $count
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereHasMorph($relation, $types, $callback = null, $operator = '>=', $count = 1)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orWhereHasMorph($relation, $types, $callback, $operator, $count);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses.
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function whereDoesntHaveMorph($relation, $types, $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->whereDoesntHaveMorph($relation, $types, $callback);
+            }
+         
+            /**
+             * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
+             *
+             * @param string $relation
+             * @param string|array $types
+             * @param \Closure $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereDoesntHaveMorph($relation, $types, $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->orWhereDoesntHaveMorph($relation, $types, $callback);
             }
          
             /**
@@ -18298,6 +18562,8 @@ namespace  {
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
     class Flash extends \Laracasts\Flash\Flash {}
+
+    class SeoManager extends \Lionix\SeoManager\Facades\SeoManager {}
  
 }
 

@@ -11,7 +11,7 @@
         "caouecs/laravel-lang": "dev-laravel58",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "doctrine/dbal": "^2.9",
-        "elasticsearch/elasticsearch": "^6.0",
+        "elasticsearch/elasticsearch": "^7.0",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.4",
         "genealabs/laravel-model-caching": "^0.4.18",
@@ -20,6 +20,7 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "lionix/seo-manager": "^1.2",
         "predis/predis": "^1.1",
         "rollbar/rollbar-laravel": "^4.0"
     },
