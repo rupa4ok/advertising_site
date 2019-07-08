@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>Adverts</title>
+    <title>{{ metaTitle() }}</title>
 @yield('meta')
 
 <!-- Styles -->
