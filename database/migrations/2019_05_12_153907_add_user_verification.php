@@ -14,7 +14,7 @@ class AddUserVerification extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('status', 16);
+            $table->string('status', 16)->default('wait');
             $table->string('verify_token')->nullable()->unique();
         });
         

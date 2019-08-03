@@ -9,12 +9,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+
 /**
- * App\Models\Advert\Attribute
+ * App\Models\Adverts\Advert\Advert
  *
  * @property int $id
- * @property int $category_id
  * @property int $user_id
+ * @property int $category_id
  * @property int $region_id
  * @property string $title
  * @property int $price
@@ -24,8 +25,19 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string|null $reject_reason
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property mixed|null $published_at
+ * @property \Illuminate\Support\Carbon|null $published_at
  * @property string|null $expired_at
+ * @property-read \App\Models\Adverts\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Photo[] $photos
+ * @property-read \App\Models\Region $region
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $values
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert active()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert favoredByUser(\App\Models\User $user)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forCategory(\App\Models\Adverts\Category $category)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forRegion(\App\Models\Region $region)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forUser(\App\Models\User $user)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert query()
@@ -44,18 +56,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert whereUserId($value)
  * @mixin \Eloquent
- * @property-read \App\Models\Adverts\Category $category
- * @property-read \App\Models\Region $region
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photo
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $values
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Adverts\Advert\Value[] $photos
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forUser(\App\Models\User $user)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forCategory(\App\Models\Adverts\Category $category)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert forRegion(\App\Models\Region $region)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favorites
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert active()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Adverts\Advert\Advert favoredByUser(\App\Models\User $user)
  */
 class Advert extends Model
 {

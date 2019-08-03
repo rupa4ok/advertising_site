@@ -6,6 +6,7 @@ use App\Models\Adverts\Advert\Advert;
 use Carbon\Carbon;
 use DomainException;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -256,6 +257,19 @@ class User extends Authenticatable
     public function favorites()
     {
     	return $this->belongsToMany(Advert::class, 'advert_favorites', 'user_id', 'advert_id');
+    }
+    
+    /**
+     * @param Builder $query
+     * @param string $network
+     * @param string $identity
+     * @return Builder
+     */
+    public function scopeByNetwork(Builder $query, string $network, string $identity): Builder
+    {
+        return $query->whereHas('networks', function(Builder $query) use ($network, $identity) {
+            $query->where('network', $network)->where('identity', $identity);
+        });
     }
 	
 	public function networks()
