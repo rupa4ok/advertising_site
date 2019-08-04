@@ -17,4 +17,16 @@ class ProfileService
             $user->unverifyPhone();
         }
     }
+    
+    public function delete($id, ProfileEditRequest $request): void
+    {
+        /** @var User $user */
+        $user = User::findOrFail($id);
+        $user->delete();
+    }
+    
+    private function getUser($userId): User
+    {
+        return User::findOrFail($userId);
+    }
 }

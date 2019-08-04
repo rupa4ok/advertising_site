@@ -18,9 +18,9 @@ class ProfileController extends Controller
         $this->service = $service;
     }
     
-    public function index(Request $request)
+    public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return ProfileResource::collection($users);
     }
     
@@ -56,6 +56,14 @@ class ProfileController extends Controller
     public function update(ProfileEditRequest $request)
     {
         $this->service->edit($request->user()->id, $request);
+        
+        $user = User::findOrFail($request->user()->id);
+        return new ProfileResource($user);
+    }
+    
+    public function delete(ProfileEditRequest $request)
+    {
+        $this->service->delete($request->id, $request);
         
         $user = User::findOrFail($request->user()->id);
         return new ProfileResource($user);

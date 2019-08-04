@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'api.', 'namespace' => 'Api'],
     function () {
-        Route::get('/', 'HomeController@home');
+        Route::get('/', 'HomeController@home')->middleware('auth:api');
         Route::post('/register', 'Auth\RegisterController@register');
         
         Route::middleware('auth:api')->group(function () {
@@ -33,6 +33,7 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'],
                     Route::get('/', 'ProfileController@show');
                     Route::get('/all', 'ProfileController@index');
                     Route::put('/', 'ProfileController@update');
+                    Route::delete('/{id}', 'ProfileController@delete');
                     Route::get('/favorites', 'FavoriteController@index');
                     Route::delete('/favorites/{advert}', 'FavoriteController@remove');
                     
